@@ -1,0 +1,8 @@
+{
+  "files.associations": {
+    "bin/dev": "shellscript"
+  },
+  "rubyLsp.rubyVersionManager": {
+    "identifier": "rvm"
+  }
+}
