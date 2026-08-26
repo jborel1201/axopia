@@ -46,8 +46,10 @@ gem "image_processing", "~> 2.0"
 gem "haml-rails", "~> 3.0"
 gem "haml", "~> 7.2"
 
-# Authentication solution
+# Authentication & authorization
 gem "devise"
+gem "pundit"
+gem "rolify"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

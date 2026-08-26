@@ -1,0 +1,185 @@
+// =============================================================
+// Couleurs
+// =============================================================
+:root {
+  // ----- Grayscale -----
+  --grayscale-000: #ffffff;
+  --grayscale-100: #f5f5f5;
+  --grayscale-200: #ebebeb;
+  --grayscale-300: #d9dadb;
+  --grayscale-400: #babec0;
+  --grayscale-500: #8b9397;
+  --grayscale-600: #59676d;
+  --grayscale-700: #444f54;
+  --grayscale-800: #2d333d;
+  --grayscale-900: #191c21;
+
+  // ----- Status -----
+  // Warning
+  --warning-main: #e12632;
+  --warning-50: #fdeeef;
+  --warning-100: #fadcde;
+  --warning-200: #f5babd;
+  --warning-300: #ec747c;
+  --warning-400: #e7515b;
+  --warning-500: #b41e28;
+  --warning-600: #901820;
+  --warning-700: #5a0f14;
+  --warning-800: #36090c;
+  --warning-900: #1b0506;
+
+  // Success
+  --success-main: #1ab569;
+  --success-50: #edf9f3;
+  --success-100: #daf3e7;
+  --success-200: #b6e7cf;
+  --success-300: #6cd09f;
+  --success-400: #48c487;
+  --success-500: #159154;
+  --success-600: #117443;
+  --success-700: #0a482a;
+  --success-800: #062b19;
+  --success-900: #03160d;
+
+  // Caution
+  --caution-main: #f0ad4e;
+  --caution-50: #fefaed;
+  --caution-100: #fdf2db;
+  --caution-200: #faebcc;
+  --caution-300: #f7cf94;
+  --caution-400: #f4bf73;
+  --caution-500: #e0a040;
+  --caution-600: #c98a2e;
+  --caution-700: #8a6d3b;
+  --caution-800: #33260a;
+  --caution-900: #1a1305;
+
+  // Info
+  --info-main: #17a2b8;
+  --info-50: #ecf6fb;
+  --info-100: #d9edf7;
+  --info-200: #bce8f1;
+  --info-300: #8bd0e0;
+  --info-400: #5bc0de;
+  --info-500: #17a2b8;
+  --info-600: #15829a;
+  --info-700: #126478;
+  --info-800: #0a3e49;
+  --info-900: #051f25;
+
+  // ----- Brand (Axopia) -----
+  // Primary — Forêt (couleur de l'axe, socle de la marque)
+  --primary-main: #24413e;
+  --primary-50: #eef6f5;
+  --primary-100: #deedec;
+  --primary-200: #c7e1de;
+  --primary-300: #a2cdc9;
+  --primary-400: #81bbb5;
+  --primary-500: #59a69e;
+  --primary-600: #47857e;
+  --primary-700: #35645f;
+  --primary-800: #24423f;
+  --primary-900: #122120;
+
+  // Secondary — Ochre (l'aiguille qui pivote, accent d'action)
+  --secondary-main: #b8863a;
+  --secondary-50: #f9f4eb;
+  --secondary-100: #f3e8d8;
+  --secondary-200: #ebd9bc;
+  --secondary-300: #dfc091;
+  --secondary-400: #d3a969;
+  --secondary-500: #c58e3a;
+  --secondary-600: #9e722e;
+  --secondary-700: #765523;
+  --secondary-800: #4f3917;
+  --secondary-900: #271c0c;
+}
+
+// =============================================================
+// Spacing (échelle 4px)
+// =============================================================
+$space-none: 0px;
+$space-_3xs: 4px;
+$space-_2xs: 8px;
+$space-xs: 12px;
+$space-sm: 16px;
+$space-md: 24px;
+$space-lg: 32px;
+$space-xl: 40px;
+$space-_2xl: 48px;
+$space-_3xl: 64px;
+$space-_4xl: 80px;
+$space-_5xl: 96px;
+
+// =============================================================
+// Border radius
+// =============================================================
+$radius-none: 0px;
+$radius-xs: 4px;
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 16px;
+$radius-xl: 24px;
+$radius-_2xl: 32px;
+$radius-pill: 9999px;
+
+// =============================================================
+// Typography
+// =============================================================
+$font-sans: 'Space Grotesk', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+$font-serif: 'Source Serif 4', Georgia, serif;
+$font-mono: 'IBM Plex Mono', 'Roboto Mono', monospace;
+
+// Font sizes
+$font-size-xs: 12px;
+$font-size-sm: 14px;
+$font-size-base: 16px;
+$font-size-lg: 18px;
+$font-size-xl: 20px;
+$font-size-_2xl: 24px;
+$font-size-_3xl: 28px;
+$font-size-_4xl: 32px;
+$font-size-_5xl: 36px;
+$font-size-_6xl: 48px;
+
+// Font weights
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+
+// =============================================================
+// Helpers — utiliser dans les composants
+// =============================================================
+
+// Ex : .btn { background: color-primary(); }
+@function color-primary($stop: 'main') {
+  @return var(--primary-#{$stop});
+}
+@function color-secondary($stop: 'main') {
+  @return var(--secondary-#{$stop});
+}
+
+// Ex : .card { border-color: color-grayscale('300'); }
+@function color-grayscale($stop: '500') {
+  @return var(--grayscale-#{$stop});
+}
+
+// Ex : .alert--error { background: color-warning('100'); border-color: color-warning(); }
+@function color-warning($stop: 'main') {
+  @return var(--warning-#{$stop});
+}
+
+// Ex : .alert--ok { background: color-success('100'); border-color: color-success(); }
+@function color-success($stop: 'main') {
+  @return var(--success-#{$stop});
+}
+
+// Ex : .alert--pending { background: color-caution('100'); border-color: color-caution(); }
+@function color-caution($stop: 'main') {
+  @return var(--caution-#{$stop});
+}
+
+// Ex : .tag--info { background: color-info('100'); border-color: color-info(); }
+@function color-info($stop: 'main') {
+  @return var(--info-#{$stop});
+}
