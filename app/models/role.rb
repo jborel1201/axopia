@@ -9,5 +9,7 @@ class Role < ApplicationRecord
             inclusion: { in: Rolify.resource_types },
             allow_nil: true
 
+  validates :name, inclusion: { in: UserRoles::ALL }
+
   scopify
 end

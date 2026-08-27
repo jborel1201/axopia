@@ -1,0 +1,124 @@
+// =============================================================
+// Base — Formulaires
+// Overrides globaux pour simple_form + Bootstrap 5
+// =============================================================
+
+@use "../tokens/tokens" as t;
+
+// ----- Labels -----
+.form-label,
+label {
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-medium;
+  color: var(--grayscale-700);
+  margin-bottom: t.$space-_3xs;
+}
+
+// ----- Inputs / Selects / Textareas -----
+.form-control,
+.form-select {
+  border-color: var(--grayscale-300);
+  border-radius: t.$radius-sm;
+  font-size: t.$font-size-base;
+  color: var(--grayscale-900);
+  background-color: #fff;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+
+  &::placeholder {
+    color: var(--grayscale-400);
+  }
+
+  &:focus {
+    border-color: var(--primary-main);
+    box-shadow: 0 0 0 3px var(--primary-100);
+  }
+
+  &:disabled,
+  &[readonly] {
+    background-color: var(--grayscale-100);
+    color: var(--grayscale-500);
+    cursor: not-allowed;
+  }
+}
+
+// ----- Validation states -----
+.is-invalid .form-control,
+.form-control.is-invalid {
+  border-color: var(--warning-main);
+
+  &:focus {
+    border-color: var(--warning-main);
+    box-shadow: 0 0 0 3px var(--warning-100);
+  }
+}
+
+.is-valid .form-control,
+.form-control.is-valid {
+  border-color: var(--success-main);
+
+  &:focus {
+    border-color: var(--success-main);
+    box-shadow: 0 0 0 3px var(--success-100);
+  }
+}
+
+.invalid-feedback {
+  font-size: t.$font-size-sm;
+  color: var(--warning-main);
+}
+
+.valid-feedback {
+  font-size: t.$font-size-sm;
+  color: var(--success-main);
+}
+
+// ----- Texte d'aide -----
+.form-text {
+  font-size: t.$font-size-sm;
+  color: var(--grayscale-500);
+  margin-top: t.$space-_3xs;
+}
+
+// ----- simple_form : groupes -----
+// simple_form génère .form-group (ou div wrappeur)
+.form-group,
+.input {
+  margin-bottom: t.$space-sm;
+
+  // Erreurs inline générées par simple_form
+  .error,
+  .help-inline {
+    display: block;
+    font-size: t.$font-size-sm;
+    color: var(--warning-main);
+    margin-top: t.$space-_3xs;
+  }
+
+  // Hint text
+  .hint {
+    display: block;
+    font-size: t.$font-size-sm;
+    color: var(--grayscale-500);
+    margin-top: t.$space-_3xs;
+  }
+}
+
+// ----- Checkboxes & Radios -----
+.form-check-input {
+  &:checked {
+    background-color: var(--primary-main);
+    border-color: var(--primary-main);
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 3px var(--primary-100);
+  }
+}
+
+// ----- Input groups -----
+.input-group-text {
+  background-color: var(--grayscale-100);
+  border-color: var(--grayscale-300);
+  color: var(--grayscale-600);
+  font-size: t.$font-size-sm;
+}

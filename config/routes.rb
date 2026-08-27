@@ -10,6 +10,29 @@ Rails.application.routes.draw do
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
-  # Defines the root path route ("/")
-  # root "posts#index"
+  # Point d'entrée : vérifie les droits (authenticate_user!) et redirige vers
+  # le namespace correspondant au rôle de l'utilisateur (RootController).
+  root to: "root#index"
+
+  # Espaces dédiés par rôle. `after_sign_in_path_for` (voir RoleRedirectable)
+  # redirige l'utilisateur vers le namespace correspondant à son rôle.
+  namespace :admin do
+    root to: "dashboard#index"
+  end
+
+  namespace :gestionnaire do
+    root to: "dashboard#index"
+  end
+
+  namespace :formateur do
+    root to: "dashboard#index"
+  end
+
+  namespace :stagiaire do
+    root to: "dashboard#index"
+  end
+
+  namespace :opco do
+    root to: "dashboard#index"
+  end
 end

@@ -1,0 +1,8 @@
+!!!
+%html
+  = render "layouts/shared/head"
+  %body.auth-screen
+    .screen
+      = render "layouts/shared/devise_brand_panel"
+      .form-panel
+        = yield

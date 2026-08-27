@@ -1,0 +1,72 @@
+// =============================================================
+// Base — Reset complémentaire
+// Bootstrap Reboot couvre l'essentiel ; ce fichier ajoute
+// les conventions spécifiques au projet.
+// =============================================================
+
+@use "../tokens/tokens" as t;
+
+// Box-sizing global (Bootstrap le fait déjà, sécurité)
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+// Supprime les marges par défaut sur les éléments structurants
+// que Bootstrap ne reset pas toujours uniformément
+figure,
+blockquote {
+  margin: 0;
+}
+
+// Images responsives par défaut
+img,
+svg {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+// Liens — cohérence avec la couleur primaire du thème
+a {
+  color: var(--primary-main);
+  text-decoration: none;
+  transition: color 0.15s ease;
+
+  &:hover {
+    color: var(--primary-600);
+  }
+}
+
+// Focus visible accessible
+:focus-visible {
+  outline: 2px solid var(--primary-main);
+  outline-offset: 2px;
+  border-radius: t.$radius-xs;
+}
+
+// Scrollbar custom (Webkit) — discret, aligné sur la palette
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--grayscale-100);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--grayscale-400);
+  border-radius: t.$radius-pill;
+
+  &:hover {
+    background: var(--grayscale-500);
+  }
+}
+
+// Sélection de texte
+::selection {
+  background: var(--primary-200);
+  color: var(--primary-900);
+}

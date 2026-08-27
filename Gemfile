@@ -12,6 +12,10 @@ gem "puma", ">= 5.0"
 gem "importmap-rails"
 # Use Sass to process CSS
 gem "dartsass-rails"
+# Bootstrap 5 SCSS source, compiled via dartsass-rails [https://github.com/twbs/bootstrap-rubygem]
+gem "bootstrap", "~> 5.3"
+# Forms builder with a Bootstrap 5 config [https://github.com/heartcombo/simple_form]
+gem "simple_form"
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
@@ -40,8 +44,8 @@ gem "kamal", require: false
 gem "thruster", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-gem "image_processing", "~> 2.0"
-gem "ruby-vips", "~> 2.0"
+# gem "image_processing", "~> 2.0"
+# gem "ruby-vips", "~> 2.0"
 
 # Use Haml for HTML templates [https://haml.info/]
 gem "haml-rails", "~> 3.0"

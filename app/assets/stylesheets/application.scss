@@ -1,1 +1,20 @@
-// Sassy
+// 1. Tokens du design system (variables Sass + custom properties CSS --primary-main, etc.)
+//    Doit être en premier : Bootstrap variables en dépendent
+@import "tokens/tokens";
+
+// 2. Override des variables Bootstrap avec nos tokens — doit précéder
+//    l'import de Bootstrap (mécanisme !default). Le gem "bootstrap" (5.3.8)
+//    définit encore ses propres variables via @import, pas @forward : @use
+//    isolerait les scopes et empêcherait la surcharge, donc on reste en
+//    @import ici (cf. https://github.com/twbs/bootstrap-rubygem).
+@import "bootstrap/variables";
+@import "bootstrap";
+
+// 3. Base — styles globaux, reset complémentaire (après Bootstrap, pour
+//    pouvoir surcharger son Reboot — ex. couleur des liens)
+@import "base/reset";
+@import "base/typography";
+@import "base/forms";
+
+// 4. Pages spécifiques
+@import "pages/auth";

@@ -1,0 +1,130 @@
+// =============================================================
+// Bootstrap Variables Override
+// Mappe les tokens du design system vers les variables Bootstrap
+//
+// RÈGLE IMPORTANTE : Bootstrap exige des valeurs statiques (pas de var() CSS).
+// On utilise donc les variables $sass pour Bootstrap, et les custom
+// properties --css pour tout le reste (JS, composants custom, thèmes).
+// =============================================================
+
+@use "sass:math";
+@use "../tokens/tokens" as t;
+
+// _token.scss définit tailles de police et espacements en px, mais Bootstrap
+// fait lui-même des calculs (line-height, hauteurs de composants, ...) en
+// mélangeant ses propres valeurs par défaut en rem avec les nôtres — un px
+// non converti fait planter la compilation ("incompatible units"). On ne
+// convertit donc en rem que les variables "fondatrices" ($font-size-base,
+// $spacer) que Bootstrap combine ainsi ; les paddings/radius restent en px,
+// simplement appliqués tels quels par les composants.
+@function rem($px, $base: 16px) {
+  @return math.div($px, $base) * 1rem;
+}
+
+// ----- Couleurs -----
+// _token.scss n'expose les couleurs qu'en custom properties CSS (--primary-main, etc.)
+// et via des fonctions qui retournent var(...). Bootstrap calcule des teintes/contrastes
+// au moment de la compilation (color-contrast(), tint-color(), --bs-*-rgb, ...) et exige
+// donc des couleurs statiques : on recopie ici les valeurs "main" du thème par défaut (:root).
+$primary:   #24413e; // --primary-main   (Axopia — Forêt)
+$secondary: #b8863a; // --secondary-main (Axopia — Ochre)
+$success:   #1ab569; // --success-main
+$danger:    #e12632; // --warning-main   (rouge, sémantique "danger" côté tokens)
+$warning:   #f0ad4e; // --caution-main   (orange, sémantique "warning" côté tokens)
+$info:      #17a2b8; // --info-main
+$light:     #f5f5f5; // --grayscale-100
+$dark:      #2d333d; // --grayscale-800
+
+// ----- Grille de couleurs étendue -----
+$body-color:       #2d333d; // --grayscale-800
+$body-bg:          #f5f5f5; // --grayscale-100
+$border-color:     #d9dadb; // --grayscale-300
+$headings-color:   #191c21; // --grayscale-900
+$text-muted:       #8b9397; // --grayscale-500
+
+// ----- Typographie -----
+// Bootstrap utilise la variable sass ; la custom property --typography-body
+// permet la surcharge par thème (cf. tokens/_tokens.scss)
+$font-family-base:    t.$font-sans;
+$font-family-sans-serif: t.$font-sans;
+
+$font-size-base:  rem(t.$font-size-base); // 16px → 1rem
+$font-size-sm:    rem(t.$font-size-sm);   // 14px
+$font-size-lg:    rem(t.$font-size-lg);   // 18px
+
+$font-weight-normal: t.$font-weight-regular;
+$font-weight-bold:   t.$font-weight-bold;
+
+$h1-font-size: rem(t.$font-size-_5xl); // 36px
+$h2-font-size: rem(t.$font-size-_4xl); // 32px
+$h3-font-size: rem(t.$font-size-_3xl); // 28px
+$h4-font-size: rem(t.$font-size-_2xl); // 24px
+$h5-font-size: rem(t.$font-size-xl);   // 20px
+$h6-font-size: rem(t.$font-size-lg);   // 18px
+
+$headings-font-weight: t.$font-weight-bold;
+
+// ----- Espacements -----
+// Bootstrap utilise $spacer comme base (multiplié par .25 / .5 / 1 / 1.5 / 3)
+// On aligne sur notre échelle 4px : spacer = 16px = $space-sm
+$spacer: rem(t.$space-sm); // 16px → 1rem — Bootstrap génère .25/.5/1/1.5/3 * $spacer
+
+// ----- Border radius -----
+$border-radius:    t.$radius-sm;   // 8px  — cards, inputs
+$border-radius-sm: t.$radius-xs;   // 4px  — badges, petits éléments
+$border-radius-lg: t.$radius-md;   // 12px — modals, popovers
+$border-radius-pill: t.$radius-pill;
+
+// ----- Composants -----
+// Buttons
+$btn-border-radius:    t.$radius-sm;
+$btn-border-radius-sm: t.$radius-xs;
+$btn-border-radius-lg: t.$radius-md;
+$btn-font-weight:      t.$font-weight-medium;
+$btn-padding-y:        t.$space-_2xs;    // 8px
+$btn-padding-x:        t.$space-md;      // 24px
+$btn-padding-y-sm:     t.$space-_3xs;   // 4px
+$btn-padding-x-sm:     t.$space-_2xs;   // 8px
+$btn-padding-y-lg:     t.$space-xs;     // 12px
+$btn-padding-x-lg:     t.$space-lg;     // 32px
+
+// Inputs
+$input-border-radius:    t.$radius-sm;
+$input-border-color:     #d9dadb; // --grayscale-300
+$input-focus-border-color: #24413e; // primary — var() non supporté ici
+$input-padding-y:        t.$space-_2xs;
+$input-padding-x:        t.$space-xs;
+$input-font-size:        rem(t.$font-size-base);
+
+// Cards
+$card-border-radius:  t.$radius-md;
+$card-border-color:   #ebebeb; // --grayscale-200
+$card-spacer-y:       t.$space-md;
+$card-spacer-x:       t.$space-md;
+$card-cap-padding-y:  t.$space-sm;
+$card-cap-padding-x:  t.$space-md;
+
+// Navbar
+$navbar-padding-y:    t.$space-sm;
+
+// Modals
+$modal-content-border-radius: t.$radius-lg;
+$modal-header-padding:        t.$space-md;
+$modal-inner-padding:         t.$space-md;
+
+// Tables
+$table-cell-padding-y:    t.$space-_2xs;
+$table-cell-padding-x:    t.$space-sm;
+$table-border-color:      #ebebeb; // --grayscale-200
+$table-striped-bg-factor: 0.03;
+
+// Badges
+$badge-border-radius:  t.$radius-xs;
+$badge-padding-y:      .35em;
+$badge-padding-x:      .65em;
+$badge-font-weight:    t.$font-weight-medium;
+
+// Alerts
+$alert-border-radius: t.$radius-sm;
+$alert-padding-y:     t.$space-_2xs;
+$alert-padding-x:     t.$space-sm;

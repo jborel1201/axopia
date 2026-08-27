@@ -1,0 +1,76 @@
+// =============================================================
+// Base — Typographie
+// Les headings utilisent --typography-heading (par thème),
+// le body utilise --typography-body.
+// =============================================================
+
+@use "../tokens/tokens" as t;
+
+// Application des polices par thème via custom properties
+// Les thèmes définissent --typography-heading et --typography-body dans _tokens.scss
+body {
+  font-family: var(--typography-body, #{t.$font-sans});
+  font-size: t.$font-size-base;
+  font-weight: t.$font-weight-regular;
+  line-height: 1.5;
+  color: var(--grayscale-800);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Headings — police dédiée par thème
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: var(--typography-heading, #{t.$font-sans});
+  font-weight: t.$font-weight-bold;
+  line-height: 1.25;
+  color: var(--grayscale-900);
+}
+
+// Tailles explicites (complète Bootstrap)
+h1, .h1 { font-size: t.$font-size-_5xl; }
+h2, .h2 { font-size: t.$font-size-_4xl; }
+h3, .h3 { font-size: t.$font-size-_3xl; }
+h4, .h4 { font-size: t.$font-size-_2xl; }
+h5, .h5 { font-size: t.$font-size-xl; }
+h6, .h6 { font-size: t.$font-size-lg; }
+
+// Textes utilitaires
+.text-xs   { font-size: t.$font-size-xs; }
+.text-sm   { font-size: t.$font-size-sm; }
+.text-base { font-size: t.$font-size-base; }
+.text-lg   { font-size: t.$font-size-lg; }
+.text-xl   { font-size: t.$font-size-xl; }
+
+// Poids
+.fw-regular { font-weight: t.$font-weight-regular; }
+.fw-medium  { font-weight: t.$font-weight-medium; }
+// .fw-bold existe déjà dans Bootstrap
+
+// Lead / intro
+.lead {
+  font-size: t.$font-size-lg;
+  font-weight: t.$font-weight-regular;
+  color: var(--grayscale-600);
+}
+
+// Labels de formulaire et petits textes d'interface
+.label {
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-medium;
+  color: var(--grayscale-700);
+  letter-spacing: 0.01em;
+}
+
+// Texte de support / aide
+.text-muted {
+  color: var(--grayscale-500) !important;
+  font-size: t.$font-size-sm;
+}
+
+// Liens dans le corps de texte
+p a {
+  color: var(--primary-main);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}

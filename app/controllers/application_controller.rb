@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include RoleRedirectable
+
   # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
   allow_browser versions: :modern
 
@@ -6,4 +8,13 @@ class ApplicationController < ActionController::Base
   stale_when_importmap_changes
 
   before_action :authenticate_user!
+  skip_before_action :authenticate_user!, if: :devise_controller?
+
+  layout :resolve_layout
+
+  private
+
+  def resolve_layout
+    devise_controller? ? "devise" : "application"
+  end
 end

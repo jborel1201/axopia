@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Axopia — Connexion</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:ital@1&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+  :root{
+    --grayscale-000:#ffffff; --grayscale-100:#f5f5f5; --grayscale-200:#ebebeb;
+    --grayscale-300:#d9dadb; --grayscale-400:#babec0; --grayscale-500:#8b9397;
+    --grayscale-600:#59676d; --grayscale-700:#444f54; --grayscale-800:#2d333d; --grayscale-900:#191c21;
+
+    --success-main:#1ab569; --success-100:#daf3e7;
+    --warning-main:#e12632; --warning-100:#fadcde;
+
+    --primary-main:#24413e; --primary-50:#eef6f5; --primary-100:#deedec; --primary-200:#c7e1de;
+    --primary-300:#a2cdc9; --primary-400:#81bbb5; --primary-700:#35645f; --primary-800:#24423f; --primary-900:#122120;
+
+    --secondary-main:#b8863a; --secondary-100:#f3e8d8; --secondary-300:#dfc091; --secondary-500:#c58e3a;
+
+    --font-sans:'Space Grotesk', 'Roboto', sans-serif;
+    --font-serif:'Source Serif 4', Georgia, serif;
+    --font-mono:'IBM Plex Mono', monospace;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;height:100%;}
+  body{
+    font-family:var(--font-sans);
+    color:var(--primary-900);
+    background:var(--grayscale-100);
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .screen{
+    min-height:100vh;
+    display:grid;
+    grid-template-columns:1.05fr 1fr;
+  }
+
+  /* ================= LEFT : brand panel ================= */
+  .brand-panel{
+    position:relative;
+    background:
+      radial-gradient(1100px 700px at 82% -8%, rgba(197,142,58,0.20), transparent 55%),
+      radial-gradient(900px 600px at -5% 105%, rgba(129,187,181,0.16), transparent 50%),
+      linear-gradient(165deg, #1a2f2c 0%, #24413e 55%, #1a2f2c 100%);
+    color:var(--grayscale-100);
+    padding:52px 56px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    overflow:hidden;
+  }
+  .brand-panel::after{
+    content:"";
+    position:absolute;inset:0;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    mix-blend-mode:overlay;
+    pointer-events:none;
+  }
+
+  .brand-mark{display:flex;align-items:center;gap:11px;position:relative;z-index:1;}
+  .brand-mark span{font-weight:700;font-size:19px;letter-spacing:-0.01em;}
+
+  .axis-stage{
+    position:relative;z-index:1;
+    display:flex;align-items:center;justify-content:center;
+    padding:36px 0 44px;
+  }
+  .axis-stage svg{filter:drop-shadow(0 20px 40px rgba(0,0,0,0.35));}
+  .pulse{animation:pulse 3.2s ease-in-out infinite;transform-origin:174px 74px;}
+  @keyframes pulse{
+    0%,100%{opacity:1;}
+    50%{opacity:0.55;}
+  }
+  .spin{animation:spin 22s linear infinite;transform-origin:110px 110px;}
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+
+  .brand-copy{position:relative;z-index:1;max-width:430px;}
+  .brand-copy .kicker{
+    font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;
+    color:var(--secondary-300);margin-bottom:16px;display:flex;align-items:center;gap:8px;
+  }
+  .brand-copy .kicker::before{content:"";width:14px;height:1px;background:var(--secondary-main);}
+  .brand-copy p.headline{
+    font-family:var(--font-serif);font-style:italic;font-size:27px;line-height:1.42;
+    color:var(--grayscale-100);margin:0 0 28px;
+  }
+
+  .brand-stats{
+    position:relative;z-index:1;
+    display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+    padding-top:26px;border-top:1px solid rgba(245,245,245,0.14);
+  }
+  .brand-stats .stat{padding-right:16px;}
+  .brand-stats .stat b{
+    display:block;font-size:22px;font-weight:700;margin-bottom:4px;
+    font-variant-numeric:tabular-nums;
+  }
+  .brand-stats .stat small{
+    font-family:var(--font-mono);font-size:10px;letter-spacing:0.04em;
+    color:rgba(245,245,245,0.5);text-transform:uppercase;line-height:1.5;
+  }
+
+  /* ================= RIGHT : form panel ================= */
+  .form-panel{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:40px;
+    background:
+      radial-gradient(circle at 1px 1px, var(--grayscale-200) 1px, transparent 1.6px) 0 0/22px 22px,
+      var(--grayscale-000);
+  }
+  .form-card{
+    width:100%;
+    max-width:392px;
+    background:var(--grayscale-000);
+    border:1px solid var(--grayscale-200);
+    border-radius:18px;
+    padding:44px 40px;
+    box-shadow:0 1px 2px rgba(18,33,32,0.04), 0 24px 48px -24px rgba(18,33,32,0.18);
+  }
+
+  .form-card .eyebrow{
+    font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;
+    color:var(--secondary-main);margin-bottom:14px;font-weight:500;
+  }
+  .form-card h1{
+    font-size:27px;font-weight:700;letter-spacing:-0.015em;margin:0 0 8px;color:var(--primary-900);
+  }
+  .form-card .sub{
+    font-size:14px;color:var(--grayscale-600);margin:0 0 32px;line-height:1.6;
+  }
+  .form-card .sub a{color:var(--primary-800);font-weight:500;text-decoration:none;border-bottom:1px solid var(--primary-300);}
+  .form-card .sub a:hover{border-color:var(--primary-800);}
+
+  .field{margin-bottom:18px;}
+  .field label{
+    display:block;font-size:11.5px;font-weight:500;color:var(--primary-900);margin-bottom:7px;
+    font-family:var(--font-mono);letter-spacing:0.03em;text-transform:uppercase;
+  }
+  .input-shell{position:relative;display:flex;align-items:center;}
+  .input-shell svg.icon{position:absolute;left:14px;pointer-events:none;color:var(--grayscale-500);}
+  .field input{
+    width:100%;
+    padding:12.5px 14px 12.5px 40px;
+    border:1.5px solid var(--grayscale-300);
+    border-radius:9px;
+    font-family:var(--font-sans);
+    font-size:14.5px;
+    color:var(--primary-900);
+    background:var(--grayscale-000);
+    outline:none;
+    transition:border-color .15s ease, box-shadow .15s ease;
+  }
+  .field input::placeholder{color:var(--grayscale-500);}
+  .field input:focus{
+    border-color:var(--primary-main);
+    box-shadow:0 0 0 3.5px var(--primary-100);
+  }
+  .toggle-eye{
+    position:absolute;right:13px;background:none;border:none;cursor:pointer;
+    color:var(--grayscale-500);display:flex;padding:2px;
+  }
+  .toggle-eye:hover{color:var(--primary-800);}
+
+  .row-between{
+    display:flex;justify-content:space-between;align-items:center;
+    margin:4px 0 26px;font-size:13px;
+  }
+  .checkbox{display:flex;align-items:center;gap:8px;color:var(--grayscale-700);cursor:pointer;user-select:none;}
+  .checkbox input{width:15px;height:15px;accent-color:var(--primary-main);cursor:pointer;}
+  .row-between a{color:var(--primary-800);text-decoration:none;font-weight:500;}
+  .row-between a:hover{text-decoration:underline;}
+
+  .btn-primary{
+    width:100%;
+    padding:13.5px;
+    background:var(--primary-900);
+    color:var(--grayscale-000);
+    border:none;
+    border-radius:9px;
+    font-family:var(--font-sans);
+    font-size:14.5px;
+    font-weight:600;
+    cursor:pointer;
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    transition:background .15s ease, transform .08s ease;
+  }
+  .btn-primary:hover{background:var(--primary-800);}
+  .btn-primary:active{transform:scale(0.99);}
+  .btn-primary svg{transition:transform .15s ease;}
+  .btn-primary:hover svg{transform:translateX(3px);}
+
+  .security-note{
+    margin-top:24px;
+    display:flex;
+    gap:10px;
+    padding:13px 14px;
+    background:var(--primary-50);
+    border:1px solid var(--primary-100);
+    border-radius:10px;
+  }
+  .security-note svg{flex-shrink:0;color:var(--primary-700);margin-top:1px;}
+  .security-note p{
+    margin:0;font-size:12px;line-height:1.55;color:var(--primary-800);
+  }
+  .security-note p b{font-weight:600;}
+
+  .foot-note{
+    margin-top:26px;font-size:11.5px;color:var(--grayscale-500);text-align:center;line-height:1.7;
+  }
+  .foot-note a{color:var(--grayscale-600);}
+
+  @media (max-width: 900px){
+    .screen{grid-template-columns:1fr;}
+    .brand-panel{display:none;}
+    .form-panel{padding:20px;background-image:none;}
+    .form-card{border:none;box-shadow:none;padding:8px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="screen">
+
+  <!-- LEFT PANEL -->
+  <div class="brand-panel">
+    <div class="brand-mark">
+      <svg width="28" height="28" viewBox="0 0 76 76" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="38" cy="38" r="36.5" stroke="#F5F5F5" stroke-width="1.5"/>
+        <line x1="38" y1="14" x2="38" y2="62" stroke="#F5F5F5" stroke-width="3" stroke-linecap="round" opacity="0.85"/>
+        <line x1="18" y1="52" x2="58" y2="24" stroke="#C58E3A" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="38" cy="38" r="4.5" fill="#F5F5F5"/>
+      </svg>
+      <span>Axopia</span>
+    </div>
+
+    <div class="axis-stage">
+      <svg width="248" height="248" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="110" cy="110" r="98" stroke="rgba(245,245,245,0.10)" stroke-width="1" stroke-dasharray="2 6"/>
+        <circle cx="110" cy="110" r="72" stroke="rgba(245,245,245,0.14)" stroke-width="1"/>
+        <g class="spin">
+          <circle cx="110" cy="38" r="2.5" fill="rgba(245,245,245,0.4)"/>
+          <circle cx="110" cy="182" r="2.5" fill="rgba(245,245,245,0.4)"/>
+          <circle cx="38" cy="110" r="2.5" fill="rgba(245,245,245,0.4)"/>
+          <circle cx="182" cy="110" r="2.5" fill="rgba(245,245,245,0.4)"/>
+        </g>
+        <line x1="110" y1="34" x2="110" y2="186" stroke="rgba(245,245,245,0.4)" stroke-width="2" stroke-linecap="round"/>
+        <g class="pulse">
+          <line x1="46" y1="146" x2="174" y2="74" stroke="#C58E3A" stroke-width="6" stroke-linecap="round"/>
+          <circle cx="174" cy="74" r="7" fill="#C58E3A"/>
+        </g>
+        <circle cx="110" cy="110" r="8" fill="#F5F5F5"/>
+        <circle cx="110" cy="110" r="14" stroke="rgba(245,245,245,0.3)" stroke-width="1"/>
+      </svg>
+    </div>
+
+    <div class="brand-copy">
+      <div class="kicker">Pilotage qualité</div>
+      <p class="headline">Un axe stable, un pilotage continu — la qualité de vos centres de formation, alignée.</p>
+    </div>
+
+    <div class="brand-stats">
+      <div class="stat"><b>96%</b><small>Score qualité moyen</small></div>
+      <div class="stat"><b>120+</b><small>Centres accompagnés</small></div>
+      <div class="stat"><b>ISO · Qualiopi</b><small>Référentiels couverts</small></div>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="form-panel">
+    <div class="form-card">
+      <div class="eyebrow">Espace organisme</div>
+      <h1>Content de vous revoir</h1>
+      <p class="sub">Pas encore de compte ? <a href="#">Demander un accès</a></p>
+
+      <form onsubmit="return false;">
+        <div class="field">
+          <label for="email">Adresse e-mail</label>
+          <div class="input-shell">
+            <svg class="icon" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 4.5C2 3.67 2.67 3 3.5 3h9c.83 0 1.5.67 1.5 1.5v7c0 .83-.67 1.5-1.5 1.5h-9C2.67 13 2 12.33 2 11.5v-7Z" stroke="currentColor" stroke-width="1.3"/><path d="M2.5 4.5 8 8.8l5.5-4.3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <input type="email" id="email" placeholder="vous@organisme-formation.fr" required>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="password">Mot de passe</label>
+          <div class="input-shell">
+            <svg class="icon" width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="3" y="7" width="10" height="6.5" rx="1.3" stroke="currentColor" stroke-width="1.3"/><path d="M5 7V5a3 3 0 0 1 6 0v2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+            <input type="password" id="password" placeholder="••••••••••" required>
+            <button type="button" class="toggle-eye" aria-label="Afficher le mot de passe" onclick="const p=document.getElementById('password'); const isPw = p.type==='password'; p.type = isPw ? 'text' : 'password'; this.innerHTML = isPw ? window.__eyeOff : window.__eyeOn;">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 8s2.5-5 7-5 7 5 7 5-2.5 5-7 5-7-5-7-5Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><circle cx="8" cy="8" r="2" stroke="currentColor" stroke-width="1.3"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="row-between">
+          <label class="checkbox">
+            <input type="checkbox">
+            Se souvenir de moi
+          </label>
+          <a href="#">Mot de passe oublié ?</a>
+        </div>
+
+        <button type="submit" class="btn-primary">
+          Se connecter
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7H12M12 7L7.5 2.5M12 7L7.5 11.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </form>
+
+      <div class="security-note">
+        <svg width="17" height="17" viewBox="0 0 16 16" fill="none"><path d="M8 1.5 13 3.5v3.7c0 3.4-2.1 5.9-5 6.8-2.9-.9-5-3.4-5-6.8V3.5L8 1.5Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M5.7 8 7.3 9.6 10.3 6.4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <p><b>Authentification à deux facteurs disponible.</b> Aucune connexion via un compte tiers (Google, Microsoft…) — vos identifiants restent propres à Axopia, chiffrés et gérés directement par votre organisme.</p>
+      </div>
+
+      <p class="foot-note">
+        En vous connectant, vous acceptez les <a href="#">conditions d'utilisation</a><br>
+        et la <a href="#">politique de confidentialité</a> d'Axopia.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  window.__eyeOn = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 8s2.5-5 7-5 7 5 7 5-2.5 5-7 5-7-5-7-5Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><circle cx="8" cy="8" r="2" stroke="currentColor" stroke-width="1.3"/></svg>';
+  window.__eyeOff = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1.5 1.5l13 13" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M6.6 6.7a2 2 0 0 0 2.7 2.7M4 4.2C2.3 5.2 1 8 1 8s2.5 5 7 5c1.1 0 2.1-.3 2.9-.8M8 3c4.5 0 7 5 7 5s-.6 1.3-1.8 2.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+</script>
+
+</body>
+</html>
