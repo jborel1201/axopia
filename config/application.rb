@@ -16,6 +16,9 @@ module Axopia
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w[assets tasks])
 
+    # All tables use UUID primary keys (multi-tenant architecture, see axopia-db-schema.md)
+    config.generators { |g| g.orm :active_record, primary_key_type: :uuid }
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
