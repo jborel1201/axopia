@@ -160,6 +160,29 @@ body.auth-screen {
     padding: 44px 40px;
     box-shadow: 0 1px 2px rgba(18, 33, 32, 0.04), 0 24px 48px -24px rgba(18, 33, 32, 0.18);
 
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--grayscale-600);
+      text-decoration: none;
+      margin-bottom: 20px;
+
+      .bi {
+        transition: transform .15s ease;
+      }
+
+      &:hover {
+        color: var(--primary-800);
+
+        .bi {
+          transform: translateX(-3px);
+        }
+      }
+    }
+
     .eyebrow {
       font-family: var(--font-mono);
       font-size: 10.5px;
@@ -194,6 +217,29 @@ body.auth-screen {
           border-color: var(--primary-800);
         }
       }
+    }
+  }
+
+  #error_explanation {
+    margin: 0 0 20px;
+    padding: 13px 14px;
+    background: var(--warning-100);
+    border: 1px solid var(--warning-300);
+    border-radius: 10px;
+
+    h2 {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--warning-700);
+      margin: 0 0 4px;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 13px;
+      color: var(--warning-700);
+      line-height: 1.6;
     }
   }
 
@@ -262,9 +308,9 @@ body.auth-screen {
     }
   }
 
-  .row-between {
+  .row-center {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     margin: 4px 0 26px;
     font-size: 13px;

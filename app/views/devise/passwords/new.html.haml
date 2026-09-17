@@ -1,9 +1,30 @@
-%h2 Forgot your password?
-= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+.form-card
+  = link_to new_session_path(resource_name), class: "back-link" do
+    = icon("arrow-left", size: 14)
+    Retour à la connexion
+
+  .eyebrow Espace organisme
+  %h1 Mot de passe oublié ?
+  %p.sub Pas de souci, ça arrive.
+
   = render "devise/shared/error_messages", resource: resource
-  .field
-    %p= f.label :email
-    %p= f.email_field :email, autofocus: true, autocomplete: "email"
-  .actions
-    = f.submit "Send me password reset instructions"
-= render "devise/shared/links"
+
+  = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+    .field
+      = f.label :email, "Adresse e-mail"
+      .input-shell
+        :plain
+          <svg class="icon" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 4.5C2 3.67 2.67 3 3.5 3h9c.83 0 1.5.67 1.5 1.5v7c0 .83-.67 1.5-1.5 1.5h-9C2.67 13 2 12.33 2 11.5v-7Z" stroke="currentColor" stroke-width="1.3"/><path d="M2.5 4.5 8 8.8l5.5-4.3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "vous@organisme-formation.fr", required: true
+
+    %button.btn-primary{type: "submit"}
+      Envoyer les instructions
+      :plain
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7H12M12 7L7.5 2.5M12 7L7.5 11.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+
+  .security-note
+    :plain
+      <svg width="17" height="17" viewBox="0 0 16 16" fill="none"><path d="M8 1.5 13 3.5v3.7c0 3.4-2.1 5.9-5 6.8-2.9-.9-5-3.4-5-6.8V3.5L8 1.5Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M5.7 8 7.3 9.6 10.3 6.4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    %p
+      %b Un email vous sera envoyé
+      si l'adresse correspond à un compte existant, avec un lien valable une durée limitée pour choisir un nouveau mot de passe.

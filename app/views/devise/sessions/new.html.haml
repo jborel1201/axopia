@@ -25,16 +25,11 @@
             <svg data-password-visibility-target="iconVisible" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 8s2.5-5 7-5 7 5 7 5-2.5 5-7 5-7-5-7-5Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><circle cx="8" cy="8" r="2" stroke="currentColor" stroke-width="1.3"/></svg>
             <svg data-password-visibility-target="iconHidden" class="d-none" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1.5 1.5l13 13" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M6.6 6.7a2 2 0 0 0 2.7 2.7M4 4.2C2.3 5.2 1 8 1 8s2.5 5 7 5c1.1 0 2.1-.3 2.9-.8M8 3c4.5 0 7 5 7 5s-.6 1.3-1.8 2.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
 
-    .row-between
-      - if devise_mapping.rememberable?
-        %label.checkbox
-          = f.check_box :remember_me
-          Se souvenir de moi
-      - if devise_mapping.recoverable?
-        = link_to "Mot de passe oublié ?", new_password_path(resource_name)
+    .row-center
+      = link_to "Mot de passe oublié ?", new_password_path(resource_name)
 
     %button.btn-primary{type: "submit"}
-      | Se connecter
+      Se connecter
       :plain
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7H12M12 7L7.5 2.5M12 7L7.5 11.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
 
