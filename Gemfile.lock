@@ -311,7 +311,6 @@ GEM
       actionpack (>= 7.0)
       railties (>= 7.0)
     rexml (3.4.4)
-    rolify (6.0.1)
     rubocop (1.90.0)
       json (>= 2.3)
       language_server-protocol (~> 3.17.0.2)
@@ -457,7 +456,6 @@ DEPENDENCIES
   puma (>= 5.0)
   pundit
   rails (~> 8.1.3)
-  rolify
   rubocop-rails-omakase
   ruby-lsp
   ruby-lsp-rails
@@ -587,7 +585,6 @@ CHECKSUMS
   reline (0.7.0) sha256=5b012d8e55dbf9d450f12bde2cf7d15ff546ae80b3f8f3b30e570d431815583d
   responders (3.2.0) sha256=89c2d6ac0ae16f6458a11524cae4a8efdceba1a3baea164d28ee9046bd3df55a
   rexml (3.4.4) sha256=19e0a2c3425dfbf2d4fc1189747bdb2f849b6c5e74180401b15734bc97b5d142
-  rolify (6.0.1) sha256=fe45fbf70c4033ccada6f9ccc02b946eeaad044ea5d3e38546ae408d3adeb5b6
   rubocop (1.90.0) sha256=9eb4c065b5c5154e4ef554c547972f3905a9eb6b53e657e580b6796b54bf8242
   rubocop-ast (1.50.0) sha256=b9ca88300da0803ee222ad20cdb30494c0a784eed06fdc35d254b06d662788db
   rubocop-performance (1.27.0) sha256=eeeb1374d062a368ee1c787b70eb0b0cc4b184cb1f8565f424760946146d61ce
