@@ -49,7 +49,7 @@ gem "thruster", require: false
 
 # Use Haml for HTML templates [https://haml.info/]
 gem "haml-rails", "~> 3.0"
-gem "haml", "~> 7.2"
+gem "haml", "~> 7.5"
 
 # Authentication & authorization
 gem "devise"
